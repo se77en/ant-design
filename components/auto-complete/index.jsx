@@ -2,7 +2,7 @@ import React from 'react';
 import RcSelect, { Option, OptGroup } from 'rc-select';
 import classNames from 'classnames';
 
-export default class Select extends React.Component {
+export default class AutoComplete extends React.Component {
   static Option = Option;
   static OptGroup = OptGroup;
 
@@ -20,7 +20,7 @@ export default class Select extends React.Component {
 
   render() {
     let {
-      size, className, notFoundContent, prefixCls, optionLabelProp, dataSource
+      size, className, notFoundContent, prefixCls, optionLabelProp, dataSource,
     } = this.props;
 
     const cls = classNames({
@@ -30,16 +30,11 @@ export default class Select extends React.Component {
       [`${prefixCls}-show-search`]: true,
     });
 
-    const options = dataSource ? dataSource.map((item, index) => {
+    const options = dataSource ? dataSource.map(item => {
       switch (typeof item) {
         case 'string':
           return <Option key={item}>{item}</Option>;
         case 'object':
-          if (item.type && (item.type.name === 'Option')) {
-            return React.cloneElement(item, {
-              key: item.key || index
-            });
-          }
           return <Option key={item.value}>{item.text}</Option>;
         default:
           return [];

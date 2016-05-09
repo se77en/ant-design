@@ -1,13 +1,13 @@
 ---
-order: 2
-title: 自定义选项
+order: 1
+title: dataSource 为对象
 ---
 
- Datasource 的每一项是一个 `Autocomplete.Option`。通过 `Autocomplete.Option` 自定义下拉菜单。
+`dataSource` 的每一项为一个对象。
+
 
 ````jsx
-import { Autocomplete } from 'antd';
-const Option = Autocomplete.Option;
+import { AutoComplete } from 'antd';
 
 const Complete = React.createClass({
   getInitialState() {
@@ -20,17 +20,19 @@ const Complete = React.createClass({
     if (!value || value.indexOf('@') >= 0) {
       dataSource = [];
     } else {
-      dataSource = ['gmail.com', '163.com', 'qq.com'].map((domain) => {
+      dataSource = ['gmail.com', '163.com', 'qq.com'].map(domain => {
         const email = `${value}@${domain}`;
-        return <Option key={email}>{email}</Option>;
+        return { text: email, value: email };
       });
     }
     this.setState({ dataSource });
+    console.log(`selected ${value}`);
   },
   render() {
     const { dataSource } = this.state;
-    return (<Autocomplete style={{ width: 200 }}
-      dataSource={dataSource}
+    return (<AutoComplete dataSource={dataSource}
+      style={{ width: 200 }}
+      allowClear
       onChange={this.handleChange} />
     );
   },
