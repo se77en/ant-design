@@ -19,6 +19,6 @@ The most basic card container. You can use it to contain text, lists, pictures a
 | Property     | Description           | Type     | Default       |
 |----------|----------------|----------|--------------|
 | title    | Card title | React.Element   |  -  |
-| extra    | Operating area at the top right corner of the card | React.Element   | - |
+| extra    | Operating area that on the top right corner of the card | React.Element   | - |
 | bordered | Whether has a border | Boolean   |  true  |
 | bodyStyle | Custom style for content area | Object   |  -  |
